@@ -1,7 +1,6 @@
 import sqlite3
 import yfinance as yf
 
-
 DB_NAME = "portfolio.db"
 
 
@@ -12,8 +11,8 @@ def get_holdings():
     cursor = conn.cursor()
 
     cursor.execute("""
-    SELECT ticker, quantity, buy_price
-    FROM portfolio
+        SELECT ticker, quantity, buy_price
+        FROM portfolio
     """)
 
     rows = cursor.fetchall()
@@ -23,7 +22,6 @@ def get_holdings():
     holdings = []
 
     for row in rows:
-
         holdings.append({
             "ticker": row[0],
             "quantity": row[1],
@@ -32,7 +30,8 @@ def get_holdings():
 
     return holdings
 
-    def get_portfolio_value():
+
+def get_portfolio_value():
 
     holdings = get_holdings()
 
@@ -66,7 +65,8 @@ def get_holdings():
         "positions": positions
     }
 
-    def get_portfolio_profit():
+
+def get_portfolio_profit():
 
     holdings = get_holdings()
 
@@ -104,7 +104,8 @@ def get_holdings():
         "holdings": results
     }
 
-    def best_performer():
+
+def best_performer():
 
     holdings = get_holdings()
 
@@ -131,7 +132,6 @@ def get_holdings():
         if profit > highest_profit:
 
             highest_profit = profit
-
             best_stock = ticker
 
     return {
@@ -139,18 +139,11 @@ def get_holdings():
         "profit": round(highest_profit, 2)
     }
 
-    def get_portfolio_summary():
+
+def get_portfolio_summary():
 
     return {
-        "portfolio_value":
-            get_portfolio_value(),
-
-        "portfolio_profit":
-            get_portfolio_profit(),
-
-        "best_performer":
-            best_performer()
+        "portfolio_value": get_portfolio_value(),
+        "portfolio_profit": get_portfolio_profit(),
+        "best_performer": best_performer()
     }
-
-    
-
