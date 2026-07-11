@@ -25,7 +25,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${API_URL}/chat-stream`,
+        `${API_URL}chat-stream`,
         {
           method: "POST",
           headers: {
