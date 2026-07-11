@@ -7,6 +7,7 @@ function App() {
   const [question, setQuestion] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
   const sendMessage = async () => {
     if (!question.trim()) return;
@@ -24,7 +25,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/chat-stream",
+        `${API_URL}/chat-stream`,
         {
           method: "POST",
           headers: {
